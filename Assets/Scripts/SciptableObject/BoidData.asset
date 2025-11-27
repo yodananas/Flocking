@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f398f9cb0ab45f74a9a1cdf474687591, type: 3}
+  m_Name: BoidData
+  m_EditorClassIdentifier: Assembly-CSharp::BoidData
+  maxSpeed: 10
+  maxForce: 0.5
+  neighborhoodRadius: 1
+  separationRadius: 10
+  separationAmount: 0
+  cohesionAmount: 0
+  alignmentAmount: 3
