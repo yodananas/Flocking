@@ -23,7 +23,7 @@ public class Fish : MonoBehaviour
         var boids = boidColliders.Select(boidCollider => boidCollider.GetComponent<Fish>()).ToList();
         boids.Remove(this);
 
-        GetComponent<SpriteRenderer>().color =  Random.ColorHSV(0f, 1f, 0f, 1f, 0f, 1f);
+        //GetComponent<SpriteRenderer>().color =  Random.ColorHSV(0f, 1f, 0f, 1f, 0f, 1f);
 
         ComputeAcceleration(boids);
         UpdateVelocity();

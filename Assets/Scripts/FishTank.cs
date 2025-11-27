@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class FishTank : MonoBehaviour
 {
@@ -12,26 +13,41 @@ public class FishTank : MonoBehaviour
     [SerializeField]
     private int SpawningCount;
 
-    private Fish[] fishes = null;
+    //private Fish[] fishes = null;
+    private List<Fish> fishs = null;
 
     private void Start()
     {
-        fishes = new Fish[SpawningCount];
+        fishs = new List<Fish>();
+        //fishes = new Fish[SpawningCount];
         for (int i = 0; i < SpawningCount; i++)
         {
-            GameObject fishInstance = Instantiate(fishPrefab, transform);
-            fishInstance.gameObject.name = $"Fish {System.Guid.NewGuid()}";
-            fishes[i] = fishInstance.GetComponent<Fish>();
+            CreateFish(Vector3.zero);
         }
+    }
+
+    void CreateFish(Vector3 worldPos)
+    {
+        GameObject fishInstance = Instantiate(fishPrefab, transform);
+        fishInstance.gameObject.name = $"Fish {System.Guid.NewGuid()}";
+        fishInstance.transform.position = worldPos;
+        fishs.Add(fishInstance.GetComponent<Fish>());
     }
 
     private void LateUpdate()
     {
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            CreateFish(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        }
+
+
         // Loop around out of bound fishes.
-        int fishesCount = fishes.Length;
+        int fishesCount = fishs.Count;
         for (int i = 0; i < fishesCount; i++)
         {
-            Fish fish = fishes[i];
+            Fish fish = fishs[i];
             Vector3 position = fish.transform.localPosition;
 
             // Left border?
@@ -65,4 +81,5 @@ public class FishTank : MonoBehaviour
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireCube(transform.position, Size);
     }
+
 }
